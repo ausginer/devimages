@@ -1,5 +1,5 @@
 {
-  "name": "ai-service-starter-image",
+  "name": "ai-service-image",
   "image": "node:25-bookworm-slim",
   "workspaceFolder": "/workspace",
   "remoteUser": "vscode",

@@ -1,11 +1,11 @@
-# ai-service-starter
+# ai-service
 
-This directory contains the migrated `ai-service-starter` image.
+This directory contains the `ai-service` image.
 
 It is now maintained from this repository and keeps the same public package identity:
 
 ```text
-ghcr.io/<owner>/ai-service-starter
+ghcr.io/ausginer/devimages/ai-service
 ```
 
 Recommended tags remain:
@@ -14,6 +14,17 @@ Recommended tags remain:
 - `vX.Y.Z`
 - `vX.Y`
 - `vX`
+
+## Using The Image
+
+Use the image from a consumer repository's `devcontainer.json`:
+
+```json
+{
+  "name": "my-service",
+  "image": "ghcr.io/ausginer/devimages/ai-service:latest"
+}
+```
 
 ## What Gets Baked Into The Image
 
@@ -36,4 +47,4 @@ The image includes Chrome for Testing, but does not bake in Playwright's own bro
 - `image/devcontainer.json` contains the source config for the prebuilt image
 - `features/cargo-tools/` contains the image-local Cargo tooling feature
 
-This migration step does not yet include sample consumer files, smoke tests, or workflow automation.
+This repository-level workflow setup does not yet include sample consumer files or smoke tests for `ai-service`.

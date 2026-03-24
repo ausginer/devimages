@@ -1,0 +1,90 @@
+name: Publish Devcontainer Images
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      has_changes: ${{ steps.detect.outputs.has_changes }}
+      matrix: ${{ steps.detect.outputs.matrix }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed images
+        id: detect
+        env:
+          EVENT_BEFORE: ${{ github.event.before }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: ./shared/scripts/detect-changed-images.sh
+
+  build-and-publish:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install Dev Container CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Resolve image tags
+        id: meta
+        run: ./shared/scripts/resolve-image-tags.sh
+
+      - name: Log in to GHCR
+        if: steps.meta.outputs.publish == 'true'
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build prebuilt image
+        env:
+          IMAGE_NAME: ${{ matrix.image_name }}
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+          PUBLISH: ${{ steps.meta.outputs.publish }}
+          CONFIG_PATH: ${{ matrix.config_path }}
+        run: ./shared/scripts/build-prebuilt-image.sh
+
+      - name: Ensure published image is available locally
+        if: steps.meta.outputs.publish == 'true'
+        env:
+          IMAGE_NAME: ${{ matrix.image_name }}
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+        run: docker pull "${IMAGE_NAME}:${PRIMARY_TAG}"
+
+      - name: Push release aliases
+        if: steps.meta.outputs.publish == 'true' && steps.meta.outputs.alias_tags != ''
+        env:
+          IMAGE_NAME: ${{ matrix.image_name }}
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+          ALIAS_TAGS: ${{ steps.meta.outputs.alias_tags }}
+        run: ./shared/scripts/push-release-aliases.sh

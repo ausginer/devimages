@@ -4,10 +4,26 @@ This repository is the source of truth for reusable prebuilt devcontainer images
 
 ## Images
 
-- `ai-service-starter`: the migrated legacy image, published as `ghcr.io/<owner>/ai-service-starter`
-- `node`: a lighter Node.js-focused image, published as `ghcr.io/<owner>/node`
+- `ai-service`: the full service-oriented image, published as `ghcr.io/ausginer/devimages/ai-service`
+- `node`: a lighter Node.js-focused image, published as `ghcr.io/ausginer/devimages/node`
 
-`ai-service-starter` now lives in this repository. The old local repository name `~/opensource/ai-dev-img` is historical only.
+## Using The Images
+
+Use either image directly from a consumer repository's `devcontainer.json`:
+
+```json
+{
+  "name": "my-service",
+  "image": "ghcr.io/ausginer/devimages/ai-service:latest"
+}
+```
+
+```json
+{
+  "name": "my-node-project",
+  "image": "ghcr.io/ausginer/devimages/node:latest"
+}
+```
 
 ## Layout
 
@@ -19,13 +35,13 @@ This repository is the source of truth for reusable prebuilt devcontainer images
 
 ## Current Status
 
-`ai-service-starter` and `node` are now real images in this repository.
+`ai-service` and `node` are now real images in this repository.
 
-This step intentionally does not add:
+GitHub Actions selectively build and publish only affected images. Docs-only changes do not trigger image builds.
 
-- GitHub Actions workflows
-- GHCR auto-publish wiring
+This repository still does not add:
+
 - sample consumer devcontainers
 - sample smoke-test and cleanup scripts
 
-Those will be added in a later step after the multi-image structure is in place.
+Those will be added in a later step.

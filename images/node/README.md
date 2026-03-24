@@ -2,12 +2,12 @@
 
 This directory contains the Node.js-focused prebuilt devcontainer image.
 
-It keeps a lighter scope than `ai-service-starter` and is intended for projects that want Node.js tooling plus a system browser, without the extra Rust, Python, or PostgreSQL layers.
+It keeps a lighter scope than `ai-service` and is intended for projects that want Node.js tooling plus a system browser, without the extra Rust, Python, or PostgreSQL layers.
 
 Its public package identity is:
 
 ```text
-ghcr.io/<owner>/node
+ghcr.io/ausginer/devimages/node
 ```
 
 Recommended tags are:
@@ -16,6 +16,17 @@ Recommended tags are:
 - `vX.Y.Z`
 - `vX.Y`
 - `vX`
+
+## Using The Image
+
+Use the image from a consumer repository's `devcontainer.json`:
+
+```json
+{
+  "name": "my-node-project",
+  "image": "ghcr.io/ausginer/devimages/node:latest"
+}
+```
 
 ## What Gets Baked Into The Image
 
@@ -33,4 +44,4 @@ The image includes system Chrome for browser-based testing and sets `PLAYWRIGHT_
 
 - `image/devcontainer.json` contains the source config for the prebuilt image
 
-This step does not add image-local features, sample consumer files, smoke tests, or workflow automation.
+This repository-level workflow setup does not yet add image-local features, sample consumer files, or smoke tests for `node`.

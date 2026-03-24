@@ -40,6 +40,8 @@ Included tooling:
 
 The image includes system Chrome for browser-based testing and sets `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`, so Playwright's own browser binaries are not pre-downloaded into the image.
 
+The devcontainer user is `node`, matching the existing non-root user from the upstream `node` image. This avoids a Linux UID collision between `node` and a second `vscode` user, which can otherwise break write access on bind-mounted workspaces.
+
 ## Layout
 
 - `.devcontainer/devcontainer.json` contains the source config for the prebuilt image

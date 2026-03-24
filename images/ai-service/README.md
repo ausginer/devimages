@@ -42,6 +42,8 @@ Included tooling:
 
 The image includes Chrome for Testing, but does not bake in Playwright's own browser download cache.
 
+The devcontainer user is `node`, matching the existing non-root user from the upstream `node` image, and the config enables `updateRemoteUserUID`. This keeps Linux bind-mounted workspaces writable without introducing a second `vscode` user that would conflict with UID `1000`.
+
 ## Layout
 
 - `.devcontainer/devcontainer.json` contains the source config for the prebuilt image

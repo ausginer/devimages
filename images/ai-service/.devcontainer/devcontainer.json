@@ -2,18 +2,19 @@
   "name": "ai-service-image",
   "image": "node:25-bookworm-slim",
   "workspaceFolder": "/workspace",
-  "remoteUser": "vscode",
+  "remoteUser": "node",
+  "updateRemoteUserUID": true,
   "containerEnv": {
     "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
   },
   "remoteEnv": {
-    "CARGO_HOME": "/home/vscode/.cargo",
-    "PATH": "/home/vscode/.cargo/bin:${containerEnv:PATH}",
+    "CARGO_HOME": "/home/node/.cargo",
+    "PATH": "/home/node/.cargo/bin:${containerEnv:PATH}",
     "UV_CACHE_DIR": "/tmp/uv-cache"
   },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
-      "username": "vscode",
+      "username": "node",
       "userUid": "automatic",
       "userGid": "automatic",
       "installZsh": false,

@@ -1,0 +1,22 @@
+{
+  "name": "node-image",
+  "image": "node:25-bookworm-slim",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic",
+      "installZsh": false,
+      "installOhMyZsh": false,
+      "installOhMyZshConfig": false
+    },
+    "ghcr.io/kreemer/features/chrometesting:1": {
+      "version": "Stable"
+    }
+  }
+}

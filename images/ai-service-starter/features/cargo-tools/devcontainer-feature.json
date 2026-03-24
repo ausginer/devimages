@@ -1,0 +1,9 @@
+{
+  "id": "cargo-tools",
+  "version": "1.0.0",
+  "name": "Cargo Tools",
+  "description": "Installs shared Cargo-based development tooling for the ai-service-starter image.",
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/rust"
+  ]
+}

@@ -29,6 +29,6 @@
     "ghcr.io/kreemer/features/chrometesting:1": {
       "version": "Stable"
     },
-    "../features/cargo-tools": {}
+    "./features/cargo-tools": {}
   }
 }

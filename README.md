@@ -28,8 +28,8 @@ Use either image directly from a consumer repository's `devcontainer.json`:
 ## Layout
 
 - `images/<slug>/` contains one image definition and its local documentation
-- `images/<slug>/image/` contains the source config for that prebuilt image
-- `images/<slug>/features/` contains image-specific Dev Container Features
+- `images/<slug>/.devcontainer/` contains the source config for that prebuilt image
+- image-specific Dev Container Features live under `images/<slug>/.devcontainer/features/` when that image needs them
 - `shared/features/` is reserved for future shared Dev Container Features
 - `shared/scripts/` contains generic build and release helpers shared across images
 

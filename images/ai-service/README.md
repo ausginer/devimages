@@ -44,7 +44,7 @@ The image includes Chrome for Testing, but does not bake in Playwright's own bro
 
 ## Layout
 
-- `image/devcontainer.json` contains the source config for the prebuilt image
-- `features/cargo-tools/` contains the image-local Cargo tooling feature
+- `.devcontainer/devcontainer.json` contains the source config for the prebuilt image
+- `.devcontainer/features/cargo-tools/` contains the image-local Cargo tooling feature
 
 This repository-level workflow setup does not yet include sample consumer files or smoke tests for `ai-service`.

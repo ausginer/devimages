@@ -12,8 +12,8 @@ declare -A image_names=(
   [node]="ghcr.io/ausginer/devimages/node"
 )
 declare -A config_paths=(
-  [ai-service]="images/ai-service/image/devcontainer.json"
-  [node]="images/node/image/devcontainer.json"
+  [ai-service]="images/ai-service/.devcontainer/devcontainer.json"
+  [node]="images/node/.devcontainer/devcontainer.json"
 )
 declare -A selected=()
 changed_files=()
@@ -58,11 +58,11 @@ else
   for file in "${changed_files[@]}"; do
     [[ -z "${file}" ]] && continue
 
-    if [[ "${file}" == images/ai-service/image/* || "${file}" == images/ai-service/features/* || "${file}" == shared/scripts/* ]]; then
+    if [[ "${file}" == images/ai-service/.devcontainer/* || "${file}" == shared/scripts/* ]]; then
       selected["ai-service"]=1
     fi
 
-    if [[ "${file}" == images/node/image/* || "${file}" == shared/scripts/* ]]; then
+    if [[ "${file}" == images/node/.devcontainer/* || "${file}" == shared/scripts/* ]]; then
       selected["node"]=1
     fi
   done

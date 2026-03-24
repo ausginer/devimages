@@ -42,6 +42,6 @@ The image includes system Chrome for browser-based testing and sets `PLAYWRIGHT_
 
 ## Layout
 
-- `image/devcontainer.json` contains the source config for the prebuilt image
+- `.devcontainer/devcontainer.json` contains the source config for the prebuilt image
 
 This repository-level workflow setup does not yet add image-local features, sample consumer files, or smoke tests for `node`.

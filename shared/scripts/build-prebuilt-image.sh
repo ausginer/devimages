@@ -8,11 +8,20 @@ fi
 
 workspace_folder="${WORKSPACE_FOLDER:-.}"
 platform="${PLATFORM:-linux/amd64}"
+config_path="${CONFIG_PATH}"
+
+if [[ "${config_path}" != /* ]]; then
+  if [[ "${workspace_folder}" == "." ]]; then
+    config_path="./${config_path}"
+  else
+    config_path="${workspace_folder%/}/${config_path}"
+  fi
+fi
 
 args=(
   build
   --workspace-folder "${workspace_folder}"
-  --config "${CONFIG_PATH}"
+  --config "${config_path}"
   --platform "${platform}"
   --image-name "${IMAGE_NAME}:${PRIMARY_TAG}"
 )

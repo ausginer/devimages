@@ -72,6 +72,7 @@ jobs:
           PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
           PUBLISH: ${{ steps.meta.outputs.publish }}
           CONFIG_PATH: ${{ matrix.config_path }}
+          WORKSPACE_FOLDER: ${{ matrix.workspace_folder }}
         run: ./shared/scripts/build-prebuilt-image.sh
 
       - name: Ensure published image is available locally

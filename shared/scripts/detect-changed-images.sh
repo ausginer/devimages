@@ -12,8 +12,12 @@ declare -A image_names=(
   [node]="ghcr.io/ausginer/devimages/node"
 )
 declare -A config_paths=(
-  [ai-service]="images/ai-service/.devcontainer/devcontainer.json"
-  [node]="images/node/.devcontainer/devcontainer.json"
+  [ai-service]=".devcontainer/devcontainer.json"
+  [node]=".devcontainer/devcontainer.json"
+)
+declare -A workspace_folders=(
+  [ai-service]="images/ai-service"
+  [node]="images/node"
 )
 declare -A selected=()
 changed_files=()
@@ -96,7 +100,7 @@ for i in "${!selected_slugs[@]}"; do
   if ((i > 0)); then
     matrix_json+=","
   fi
-  matrix_json+="{\"slug\":\"${slug}\",\"image_name\":\"${image_names[$slug]}\",\"config_path\":\"${config_paths[$slug]}\"}"
+  matrix_json+="{\"slug\":\"${slug}\",\"image_name\":\"${image_names[$slug]}\",\"config_path\":\"${config_paths[$slug]}\",\"workspace_folder\":\"${workspace_folders[$slug]}\"}"
 done
 matrix_json+="]}"
 

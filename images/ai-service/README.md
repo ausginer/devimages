@@ -38,9 +38,12 @@ Included tooling:
 - `uv`
 - PostgreSQL client
 - Cargo tooling: `sqlx-cli`, `sqruff`, `cargo-expand`
+- GitHub CLI via `ghcr.io/devcontainers/features/github-cli:1`
 - Chrome for Testing via `ghcr.io/kreemer/features/chrometesting:1`
 
 The image includes Chrome for Testing, but does not bake in Playwright's own browser download cache.
+
+It also includes GitHub CLI so `gh` and cloud/plugin-driven workflows have a consistent runtime available inside the devcontainer.
 
 The devcontainer user is `node`, matching the existing non-root user from the upstream `node` image, and the config enables `updateRemoteUserUID`. This keeps Linux bind-mounted workspaces writable without introducing a second `vscode` user that would conflict with UID `1000`.
 

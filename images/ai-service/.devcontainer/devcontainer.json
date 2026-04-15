@@ -30,6 +30,7 @@
     "ghcr.io/kreemer/features/chrometesting:1": {
       "version": "Stable"
     },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
     "./features/cargo-tools": {}
   }
 }

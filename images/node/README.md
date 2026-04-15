@@ -36,9 +36,12 @@ Included tooling:
 
 - Node.js 25
 - `ghcr.io/devcontainers/features/common-utils:2`
+- GitHub CLI via `ghcr.io/devcontainers/features/github-cli:1`
 - Chrome for Testing via `ghcr.io/kreemer/features/chrometesting:1`
 
 The image includes system Chrome for browser-based testing and sets `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`, so Playwright's own browser binaries are not pre-downloaded into the image.
+
+It also includes GitHub CLI so `gh` and cloud/plugin-driven workflows have a consistent runtime available inside the devcontainer.
 
 The devcontainer user is `node`, matching the existing non-root user from the upstream `node` image. This avoids a Linux UID collision between `node` and a second `vscode` user, which can otherwise break write access on bind-mounted workspaces.
 

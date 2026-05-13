@@ -21,7 +21,7 @@
       "version": "Stable"
     },
     "ghcr.io/devcontainers-extra/features/bun:1": {
-      "version": "1.3.13"
+      "version": "bun-v1.3.13"
     }
   }
 }

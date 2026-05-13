@@ -20,8 +20,8 @@
     "ghcr.io/kreemer/features/chrometesting:1": {
       "version": "Stable"
     },
-    "ghcr.io/devcontainers-extra/features/bun:1": {
-      "version": "bun-v1.3.13"
+    "ghcr.io/prulloac/devcontainer-features/bun:1": {
+      "version": "1.3.13"
     }
   }
 }

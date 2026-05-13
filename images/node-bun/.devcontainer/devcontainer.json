@@ -1,0 +1,25 @@
+{
+  "name": "node-bun-image",
+  "image": "node:22.16.0-bookworm-slim",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "node",
+  "updateRemoteUserUID": true,
+  "containerEnv": {
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "username": "node",
+      "userUid": "automatic",
+      "userGid": "automatic",
+      "installZsh": false,
+      "installOhMyZsh": false,
+      "installOhMyZshConfig": false
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/kreemer/features/chrometesting:1": {
+      "version": "Stable"
+    },
+    "ghcr.io/devcontainers-extra/features/bun:1": {}
+  }
+}

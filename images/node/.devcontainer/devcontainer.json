@@ -17,6 +17,7 @@
       "installOhMyZshConfig": false
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/sshd:1": {},
     "ghcr.io/kreemer/features/chrometesting:1": {
       "version": "Stable"
     }

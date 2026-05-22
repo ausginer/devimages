@@ -25,7 +25,7 @@
     },
     "ghcr.io/devcontainers/features/sshd:1": {},
     "ghcr.io/devcontainers/features/git-lfs:1": {},
-    "../../../shared/features/claude-cli": {},
-    "../../../shared/features/codex-cli": {}
+    "./features/claude-cli": {},
+    "./features/codex-cli": {}
   }
 }

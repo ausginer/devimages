@@ -18,8 +18,9 @@ if [[ "${config_path}" != /* ]]; then
   fi
 fi
 
+repo_root="$(cd "$(dirname "$0")/../.." && pwd)"
 devcontainer_dir="$(dirname "${config_path}")"
-shared_features_src="${workspace_folder}/shared/features"
+shared_features_src="${repo_root}/shared/features"
 shared_features_dst="${devcontainer_dir}/features"
 
 if [[ -d "${shared_features_src}" ]]; then

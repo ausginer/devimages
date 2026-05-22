@@ -69,11 +69,11 @@ else
       selected["ai-service"]=1
     fi
 
-    if [[ "${file}" == images/node/.devcontainer/* || "${file}" == shared/scripts/* ]]; then
+    if [[ "${file}" == images/node/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
       selected["node"]=1
     fi
 
-    if [[ "${file}" == images/node-bun/.devcontainer/* || "${file}" == shared/scripts/* ]]; then
+    if [[ "${file}" == images/node-bun/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
       selected["node-bun"]=1
     fi
   done

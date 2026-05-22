@@ -18,6 +18,15 @@ if [[ "${config_path}" != /* ]]; then
   fi
 fi
 
+devcontainer_dir="$(dirname "${config_path}")"
+shared_features_src="${workspace_folder}/shared/features"
+shared_features_dst="${devcontainer_dir}/features"
+
+if [[ -d "${shared_features_src}" ]]; then
+  mkdir -p "${shared_features_dst}"
+  cp -r "${shared_features_src}/." "${shared_features_dst}/"
+fi
+
 args=(
   build
   --workspace-folder "${workspace_folder}"

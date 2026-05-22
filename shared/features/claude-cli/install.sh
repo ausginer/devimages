@@ -11,3 +11,7 @@ if command -v claude >/dev/null 2>&1; then
 fi
 
 curl -fsSL https://claude.ai/install.sh | bash
+
+mv /root/.claude/local/bin/claude /usr/local/bin/claude
+
+claude --version

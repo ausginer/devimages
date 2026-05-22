@@ -54,7 +54,7 @@ The SSH server feature enables editor integrations that connect over SSH, such a
 
 Git LFS is included for repositories that store large binary assets alongside code.
 
-Claude Code CLI and Codex CLI are installed via the shared features in this repository. Claude Code uses the official curl installer; Codex is installed as a global npm package.
+Claude Code CLI and Codex CLI are installed via the shared features in this repository. Claude Code uses the official apt repository; Codex is installed as a global npm package.
 
 The devcontainer user is `node`, matching the existing non-root user from the upstream `node` image. This avoids a Linux UID collision between `node` and a second `vscode` user, which can otherwise break write access on bind-mounted workspaces.
 

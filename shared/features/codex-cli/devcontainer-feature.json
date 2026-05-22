@@ -1,0 +1,6 @@
+{
+  "id": "codex-cli",
+  "version": "1.0.0",
+  "name": "Codex CLI",
+  "description": "Installs the OpenAI Codex CLI via npm."
+}

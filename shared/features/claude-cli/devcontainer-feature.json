@@ -1,0 +1,9 @@
+{
+  "id": "claude-cli",
+  "version": "1.0.0",
+  "name": "Claude CLI",
+  "description": "Installs the Claude Code CLI via the official curl installer.",
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}

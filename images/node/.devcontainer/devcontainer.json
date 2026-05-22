@@ -20,6 +20,8 @@
     "ghcr.io/devcontainers/features/sshd:1": {},
     "ghcr.io/kreemer/features/chrometesting:1": {
       "version": "Stable"
-    }
+    },
+    "../../shared/features/claude-cli": {},
+    "../../shared/features/codex-cli": {}
   }
 }

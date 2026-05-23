@@ -6,21 +6,18 @@ if [[ -z "${GITHUB_OUTPUT:-}" ]]; then
   exit 1
 fi
 
-image_slugs=(ai-service node node-bun)
+image_slugs=(ai-service node)
 declare -A image_names=(
   [ai-service]="ghcr.io/ausginer/devimages/ai-service"
   [node]="ghcr.io/ausginer/devimages/node"
-  [node-bun]="ghcr.io/ausginer/devimages/node-bun"
 )
 declare -A config_paths=(
   [ai-service]=".devcontainer/devcontainer.json"
   [node]=".devcontainer/devcontainer.json"
-  [node-bun]=".devcontainer/devcontainer.json"
 )
 declare -A workspace_folders=(
   [ai-service]="images/ai-service"
   [node]="images/node"
-  [node-bun]="images/node-bun"
 )
 declare -A selected=()
 changed_files=()
@@ -73,9 +70,6 @@ else
       selected["node"]=1
     fi
 
-    if [[ "${file}" == images/node-bun/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
-      selected["node-bun"]=1
-    fi
   done
 fi
 

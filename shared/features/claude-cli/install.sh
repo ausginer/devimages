@@ -7,4 +7,5 @@ fi
 
 su node -c "curl -fsSL https://claude.ai/install.sh | bash"
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/node/.bashrc
+rm -rf /home/node/.claude
 su node -c "claude --version" -l

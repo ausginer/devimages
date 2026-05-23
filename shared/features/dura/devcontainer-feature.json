@@ -1,0 +1,7 @@
+{
+  "id": "dura",
+  "version": "1.0.0",
+  "name": "Dura",
+  "description": "Installs the Dura CLI via cargo.",
+  "installsAfter": ["ghcr.io/devcontainers/features/rust"]
+}

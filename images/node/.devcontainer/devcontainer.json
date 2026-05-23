@@ -21,7 +21,9 @@
     "ghcr.io/kreemer/features/chrometesting:1": {
       "version": "Stable"
     },
+    "ghcr.io/devcontainers/features/rust:1": {},
     "./features/claude-cli": {},
-    "./features/codex-cli": {}
+    "./features/codex-cli": {},
+    "./features/dura": {}
   }
 }

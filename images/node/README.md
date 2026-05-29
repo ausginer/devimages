@@ -42,6 +42,7 @@ Included tooling:
 - Claude Code CLI via `shared/features/claude-cli`
 - Codex CLI via `shared/features/codex-cli`
 - Dura via `shared/features/dura`
+- Just via `shared/features/just`
 
 The image includes system Chrome for browser-based testing and sets `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`, so Playwright's own browser binaries are not pre-downloaded into the image.
 

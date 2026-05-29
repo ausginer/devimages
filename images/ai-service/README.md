@@ -40,6 +40,10 @@ Included tooling:
 - Cargo tooling: `sqlx-cli`, `sqruff`, `cargo-expand`
 - GitHub CLI via `ghcr.io/devcontainers/features/github-cli:1`
 - Chrome for Testing via `ghcr.io/kreemer/features/chrometesting:1`
+- Claude Code CLI via `shared/features/claude-cli`
+- Codex CLI via `shared/features/codex-cli`
+- Dura via `shared/features/dura`
+- Just via `shared/features/just`
 
 The image includes Chrome for Testing, but does not bake in Playwright's own browser download cache.
 

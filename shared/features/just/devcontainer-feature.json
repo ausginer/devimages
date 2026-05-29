@@ -1,0 +1,7 @@
+{
+  "id": "just",
+  "version": "1.0.0",
+  "name": "Just Cmd",
+  "description": "Installs the Just Command Runner via cargo.",
+  "installsAfter": ["ghcr.io/devcontainers/features/rust"]
+}

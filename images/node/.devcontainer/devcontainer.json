@@ -5,7 +5,7 @@
   "remoteUser": "node",
   "updateRemoteUserUID": true,
   "containerEnv": {
-    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
   },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -14,16 +14,17 @@
       "userGid": "automatic",
       "installZsh": false,
       "installOhMyZsh": false,
-      "installOhMyZshConfig": false
+      "installOhMyZshConfig": false,
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {},
     "ghcr.io/kreemer/features/chrometesting:1": {
-      "version": "Stable"
+      "version": "Stable",
     },
     "ghcr.io/devcontainers/features/rust:1": {},
     "./features/claude-cli": {},
     "./features/codex-cli": {},
-    "./features/dura": {}
-  }
+    "./features/dura": {},
+    "./features/just": {},
+  },
 }

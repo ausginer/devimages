@@ -16,7 +16,6 @@
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "./features/cargo-bevy-dev": {},
     "./features/claude-cli": {},
-    "./features/codex-cli": {},
     "./features/dura": {},
   },
 }

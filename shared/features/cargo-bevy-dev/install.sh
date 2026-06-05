@@ -43,7 +43,6 @@ rustup component add \
 rustup target add \
     wasm32-wasip1 \
     wasm32-wasip2 \
-    wasm32-wasip3 \
     wasm32-unknown-unknown
 
 cargo install --locked \

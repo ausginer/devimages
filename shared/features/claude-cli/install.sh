@@ -1,12 +1,16 @@
 #!/bin/sh
 set -eu
 
-remote_user="${_REMOTE_USER:-}"
+remote_user="${USERNAME:-${_REMOTE_USER:-node}}"
 remote_user_home="${_REMOTE_USER_HOME:-}"
 
-if [ -z "$remote_user" ] || [ -z "$remote_user_home" ]; then
-  echo "_REMOTE_USER and _REMOTE_USER_HOME are required." >&2
+if ! id "$remote_user" >/dev/null 2>&1; then
+  echo "User '${remote_user}' does not exist." >&2
   exit 1
+fi
+
+if [ -z "$remote_user_home" ] || [ "$(id -un "$remote_user")" != "${_REMOTE_USER:-}" ]; then
+  remote_user_home="$(getent passwd "$remote_user" | cut -d: -f6)"
 fi
 
 if su "$remote_user" -c "command -v claude" >/dev/null 2>&1; then

@@ -15,7 +15,9 @@
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "./features/cargo-bevy-dev": {},
-    "./features/claude-cli": {},
+    "./features/claude-cli": {
+      "username": "dev",
+    },
     "./features/dura": {},
   },
 }

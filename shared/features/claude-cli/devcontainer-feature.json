@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "name": "Claude CLI",
   "description": "Installs the Claude Code CLI via the official curl installer.",
+  "options": {
+    "username": {
+      "type": "string",
+      "default": "node",
+      "description": "User to install Claude Code CLI for."
+    }
+  },
   "installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
 }

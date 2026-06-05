@@ -1,6 +1,6 @@
 {
   "name": "ai-service-image",
-  "image": "node:25-bookworm-slim",
+  "image": "node:slim",
   "workspaceFolder": "/workspace",
   "remoteUser": "node",
   "updateRemoteUserUID": true,

@@ -1,15 +1,12 @@
 {
-  "name": "node-image",
-  "image": "node:slim",
+  "name": "rust-bevy-image",
+  "image": "rust:slim",
   "workspaceFolder": "/workspace",
-  "remoteUser": "node",
+  "remoteUser": "dev",
   "updateRemoteUserUID": true,
-  "containerEnv": {
-    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
-  },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
-      "username": "node",
+      "username": "dev",
       "userUid": "automatic",
       "userGid": "automatic",
       "installZsh": false,
@@ -17,13 +14,9 @@
       "installOhMyZshConfig": false,
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/kreemer/features/chrometesting:1": {
-      "version": "Stable",
-    },
-    "ghcr.io/devcontainers/features/rust:1": {},
+    "./features/cargo-bevy-dev": {},
     "./features/claude-cli": {},
     "./features/codex-cli": {},
     "./features/dura": {},
-    "./features/just": {},
   },
 }

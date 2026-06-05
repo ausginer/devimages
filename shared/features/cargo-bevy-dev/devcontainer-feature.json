@@ -1,0 +1,7 @@
+{
+  "id": "cargo-dev",
+  "version": "1.0.0",
+  "name": "Cargo Dev Tools",
+  "description": "Installs useful Cargo devtools",
+  "installsAfter": ["ghcr.io/devcontainers/features/rust"]
+}

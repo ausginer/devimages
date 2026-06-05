@@ -6,10 +6,11 @@ This repository is the source of truth for reusable prebuilt devcontainer images
 
 - `ai-service`: the full service-oriented image, published as `ghcr.io/ausginer/devimages/ai-service`
 - `node`: a lighter Node.js-focused image, published as `ghcr.io/ausginer/devimages/node`
+- `rust-bevy`: a Rust and Bevy-focused image with Cargo, WASM, and native build tooling, published as `ghcr.io/ausginer/devimages/rust-bevy`
 
 ## Using The Images
 
-Use either image directly from a consumer repository's `devcontainer.json`:
+Use an image directly from a consumer repository's `devcontainer.json`:
 
 ```json
 {
@@ -25,6 +26,13 @@ Use either image directly from a consumer repository's `devcontainer.json`:
 }
 ```
 
+```json
+{
+  "name": "my-rust-bevy-project",
+  "image": "ghcr.io/ausginer/devimages/rust-bevy:latest"
+}
+```
+
 ## Layout
 
 - `images/<slug>/` contains one image definition and its local documentation
@@ -35,7 +43,7 @@ Use either image directly from a consumer repository's `devcontainer.json`:
 
 ## Current Status
 
-`ai-service` and `node` are now real images in this repository.
+`ai-service`, `node`, and `rust-bevy` are now real images in this repository.
 
 GitHub Actions selectively build and publish only affected images. Docs-only changes do not trigger image builds.
 

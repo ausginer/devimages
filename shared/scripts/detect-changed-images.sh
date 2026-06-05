@@ -6,18 +6,21 @@ if [[ -z "${GITHUB_OUTPUT:-}" ]]; then
   exit 1
 fi
 
-image_slugs=(ai-service node)
+image_slugs=(ai-service node rust-bevy)
 declare -A image_names=(
   [ai-service]="ghcr.io/ausginer/devimages/ai-service"
   [node]="ghcr.io/ausginer/devimages/node"
+  [rust-bevy]="ghcr.io/ausginer/devimages/rust-bevy"
 )
 declare -A config_paths=(
   [ai-service]=".devcontainer/devcontainer.json"
   [node]=".devcontainer/devcontainer.json"
+  [rust-bevy]=".devcontainer/devcontainer.json"
 )
 declare -A workspace_folders=(
   [ai-service]="images/ai-service"
   [node]="images/node"
+  [rust-bevy]="images/rust-bevy"
 )
 declare -A selected=()
 changed_files=()
@@ -62,12 +65,16 @@ else
   for file in "${changed_files[@]}"; do
     [[ -z "${file}" ]] && continue
 
-    if [[ "${file}" == images/ai-service/.devcontainer/* || "${file}" == shared/scripts/* ]]; then
+    if [[ "${file}" == images/ai-service/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
       selected["ai-service"]=1
     fi
 
     if [[ "${file}" == images/node/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
       selected["node"]=1
+    fi
+
+    if [[ "${file}" == images/rust-bevy/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
+      selected["rust-bevy"]=1
     fi
 
   done

@@ -31,6 +31,7 @@
       "version": "Stable",
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/sshd:1": {},
     "./features/cargo-tools": {},
     "./features/dura": {},
     "./features/just": {},

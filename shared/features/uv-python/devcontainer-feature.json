@@ -1,0 +1,14 @@
+{
+  "id": "uv-python",
+  "version": "1.0.0",
+  "name": "Python from UV",
+  "description": "Installs Python via uv",
+  "installsAfter": ["ghcr.io/va-h/devcontainers-features/uv"],
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "latest",
+      "description": "Python version"
+    }
+  }
+}

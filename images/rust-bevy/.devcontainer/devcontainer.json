@@ -4,6 +4,9 @@
   "workspaceFolder": "/workspace",
   "remoteUser": "dev",
   "updateRemoteUserUID": true,
+  "remoteEnv": {
+    "UV_CACHE_DIR": "${containerEnv:HOME}/.cache/uv",
+  },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "username": "dev",
@@ -25,6 +28,7 @@
     "ghcr.io/dirien/devcontainer-features/opencode:0": {},
     "./features/codex-cli": {},
     "./features/cao": {},
+    "./features/uv-python": {},
     "./features/cargo-bevy-dev": {},
     "./features/claude-cli": {
       "username": "dev",

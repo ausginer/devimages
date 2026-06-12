@@ -13,8 +13,17 @@
       "installOhMyZsh": false,
       "installOhMyZshConfig": false,
     },
+    "ghcr.io/devcontainers/features/node:2": {
+      "version": "25",
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.14",
+    },
+    "ghcr.io/va-h/devcontainers-features/uv:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {},
+    "./features/codex-cli": {},
+    "./features/cao": {},
     "./features/cargo-bevy-dev": {},
     "./features/claude-cli": {
       "username": "dev",

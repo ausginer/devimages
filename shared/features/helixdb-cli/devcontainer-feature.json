@@ -1,0 +1,6 @@
+{
+  "id": "helixdb-cli",
+  "version": "1.0.0",
+  "name": "HelixDB CLI",
+  "description": "Installs the HelixDB CLI via the official install script."
+}

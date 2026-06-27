@@ -1,0 +1,6 @@
+{
+  "id": "minio-cli",
+  "version": "1.0.0",
+  "name": "MinIO CLI",
+  "description": "Installs the MinIO Client (mc) via the official binary release."
+}

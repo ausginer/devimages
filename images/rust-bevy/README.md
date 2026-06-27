@@ -36,10 +36,17 @@ Included tooling:
 
 - Rust toolchain from the upstream `rust:slim` image
 - `ghcr.io/devcontainers/features/common-utils:2`
+- Node.js via `ghcr.io/devcontainers/features/node:2`
+- uv via `ghcr.io/va-h/devcontainers-features/uv:1`
 - GitHub CLI via `ghcr.io/devcontainers/features/github-cli:1`
+- SSH server via `ghcr.io/devcontainers/features/sshd:1`
+- opencode via `ghcr.io/dirien/devcontainer-features/opencode:0`
+- Codex CLI via `shared/features/codex-cli`
+- HelixDB CLI via `shared/features/helixdb-cli`
+- MinIO Client (`mc`) via `shared/features/minio-cli`
+- Python toolchain (managed by uv) via `shared/features/uv-python`
 - Cargo and native build tooling via `shared/features/cargo-bevy-dev`
 - Claude Code CLI via `shared/features/claude-cli`
-- Codex CLI via `shared/features/codex-cli`
 - Dura via `shared/features/dura`
 
 The Cargo development feature installs common build dependencies, Rust components, WASM targets, Cargo tools, and Wasmtime. It includes `rustfmt`, `clippy`, `rust-src`, `rust-analyzer`, `cargo-nextest`, `cargo-expand`, `cargo-audit`, `sccache`, and `wasm-tools`.
@@ -56,4 +63,7 @@ The devcontainer user is `dev`, created by the common-utils feature, and the con
 - `shared/features/cargo-bevy-dev` installs Rust, Cargo, WASM, and native build tooling
 - `shared/features/claude-cli` installs the Claude Code CLI
 - `shared/features/codex-cli` installs the Codex CLI
+- `shared/features/helixdb-cli` installs the HelixDB CLI
+- `shared/features/minio-cli` installs the MinIO Client (`mc`)
+- `shared/features/uv-python` installs the Python toolchain managed by uv
 - `shared/features/dura` installs Dura

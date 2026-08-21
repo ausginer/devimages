@@ -5,7 +5,7 @@
   "remoteUser": "dev",
   "updateRemoteUserUID": true,
   "remoteEnv": {
-    "UV_CACHE_DIR": "${containerEnv:HOME}/.cache/uv"
+    "UV_CACHE_DIR": "${containerEnv:HOME}/.cache/uv",
   },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -14,23 +14,23 @@
       "userGid": "automatic",
       "installZsh": false,
       "installOhMyZsh": false,
-      "installOhMyZshConfig": false
+      "installOhMyZshConfig": false,
     },
     "ghcr.io/devcontainers/features/node:2": {
-      "version": "26"
+      "version": "latest",
     },
     "ghcr.io/va-h/devcontainers-features/uv:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {},
-    "ghcr.io/dirien/devcontainer-features/opencode:0": {},
     "./features/codex-cli": {},
-    "./features/helixdb-cli": {},
-    "./features/minio-cli": {},
     "./features/uv-python": {},
     "./features/cargo-bevy-dev": {},
     "./features/claude-cli": {
-      "username": "dev"
+      "username": "dev",
     },
-    "./features/dura": {}
-  }
+    "./features/opencode-cli": {
+      "username": "dev",
+    },
+    "./features/dura": {},
+  },
 }

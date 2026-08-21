@@ -1,8 +1,8 @@
 #!/bin/sh
 set -eu
 
-remote_user="${USERNAME:-${_REMOTE_USER:-node}}"
-remote_user_home="${_REMOTE_USER_HOME:-}"
+remote_user="${USERNAME:-${_REMOTE_USER:-${_CONTAINER_USER:-node}}}"
+remote_user_home="${_REMOTE_USER_HOME:-${_CONTAINER_USER_HOME:-}}"
 
 if ! id "$remote_user" >/dev/null 2>&1; then
   echo "User '${remote_user}' does not exist." >&2

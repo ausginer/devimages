@@ -2,16 +2,13 @@
 set -eu
 
 remote_user="${USERNAME:-${_REMOTE_USER:-${_CONTAINER_USER:-node}}}"
-remote_user_home="${_REMOTE_USER_HOME:-${_CONTAINER_USER_HOME:-}}"
 
 if ! id "$remote_user" >/dev/null 2>&1; then
   echo "User '${remote_user}' does not exist." >&2
   exit 1
 fi
 
-if [ -z "$remote_user_home" ]; then
-  remote_user_home="$(getent passwd "$remote_user" | cut -d: -f6)"
-fi
+remote_user_home="$(getent passwd "$remote_user" | cut -d: -f6)"
 
 if ! command -v curl >/dev/null 2>&1; then
   echo "curl must be installed before the opencode-cli feature runs." >&2

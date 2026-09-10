@@ -23,6 +23,9 @@
     "ghcr.io/devcontainers/features/rust:1": {},
     "ghcr.io/va-h/devcontainers-features/uv:1": {},
     "ghcr.io/devcontainers/features/sshd:1": {},
+    "ghcr.io/jsburckhardt/devcontainer-features/lazygit:1": {
+      "version": "latest",
+    },
     "./features/claude-cli": {},
     "./features/codex-cli": {},
     "./features/opencode-cli": {},

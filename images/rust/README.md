@@ -24,7 +24,7 @@ The image starts from `rust:slim` and adds:
 - native Rust build tools and libraries, including Clang, LLD, LLDB, mold, CMake, Protobuf, OpenSSL, and SQLite development files
 - `rustfmt`, Clippy, Rust source, and rust-analyzer
 - `wasm32-wasip1`, `wasm32-wasip2`, and `wasm32-unknown-unknown` targets
-- `cargo-nextest`, `cargo-expand`, `cargo-audit`, `sccache`, `wasm-tools`, and Wasmtime
+- `cargo-nextest`, `cargo-expand`, `cargo-audit`, `sccache`, and `wasm-tools`
 - Node.js, uv, and a uv-managed Python installation
 - common command-line utilities, GitHub CLI, an SSH server, lazygit, and Helix
 - Claude Code, Codex, OpenCode, Dura, and Just

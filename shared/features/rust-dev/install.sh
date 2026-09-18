@@ -45,7 +45,3 @@ cargo install --locked \
     cargo-audit \
     sccache \
     wasm-tools
-
-curl -fsSL https://wasmtime.dev/install.sh | bash
-install -m 0755 "$HOME/.wasmtime/bin/wasmtime" /usr/local/bin/wasmtime
-rm -rf "$HOME/.wasmtime"

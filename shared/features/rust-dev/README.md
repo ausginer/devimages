@@ -8,7 +8,6 @@ Adds the common native, Cargo, and WebAssembly tooling used by the `rust` image.
 - `rustfmt`, Clippy, Rust source, and rust-analyzer
 - `wasm32-wasip1`, `wasm32-wasip2`, and `wasm32-unknown-unknown` targets
 - `cargo-nextest`, `cargo-expand`, `cargo-audit`, `sccache`, and `wasm-tools`
-- Wasmtime
 
 ## Usage
 

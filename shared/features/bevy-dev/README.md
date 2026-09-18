@@ -1,6 +1,6 @@
 # Bevy Development Dependencies
 
-Installs the Debian libraries needed to compile Bevy applications with Linux windowing, input, and audio support: X11, Wayland, udev, xkbcommon, and ALSA.
+Installs the Debian libraries needed to compile Bevy applications with Linux windowing, input, and audio support: X11, Wayland, udev, xkbcommon, and ALSA. It also installs Wasmtime for game plugin systems built with WebAssembly.
 
 ## Usage
 

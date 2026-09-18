@@ -1,0 +1,7 @@
+{
+  "id": "rust-dev",
+  "version": "1.0.0",
+  "name": "Rust Development Tools",
+  "description": "Installs native build dependencies, Rust components and targets, and Cargo tools.",
+  "installsAfter": ["ghcr.io/devcontainers/features/rust"]
+}

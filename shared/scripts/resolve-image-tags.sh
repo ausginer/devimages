@@ -6,11 +6,7 @@ if [[ -z "${GITHUB_OUTPUT:-}" ]]; then
   exit 1
 fi
 
-if [[ "${GITHUB_EVENT_NAME:-}" == "pull_request" ]]; then
-  primary_tag="pr-${GITHUB_SHA::12}"
-  publish="false"
-  alias_tags=""
-elif [[ "${GITHUB_REF_TYPE:-}" == "branch" && "${GITHUB_REF_NAME:-}" == "main" ]]; then
+if [[ "${GITHUB_REF_TYPE:-}" == "branch" && "${GITHUB_REF_NAME:-}" == "main" ]]; then
   primary_tag="latest"
   publish="true"
   alias_tags=""

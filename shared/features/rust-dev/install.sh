@@ -3,7 +3,8 @@ set -eu
 
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get update && apt-get install -y --no-install-recommends \
+apt-get update
+apt-get install -y --no-install-recommends \
     bash-completion \
     ca-certificates \
     curl \
@@ -23,14 +24,7 @@ apt-get update && apt-get install -y --no-install-recommends \
     make \
     protobuf-compiler \
     libssl-dev \
-    libsqlite3-dev \
-    libx11-dev \
-    libasound2-dev \
-    libudev-dev \
-    libxkbcommon-x11-0 \
-    libwayland-dev \
-    libxkbcommon-dev \
-    wayland-protocols
+    libsqlite3-dev
 
 rm -rf /var/lib/apt/lists/*
 
@@ -51,7 +45,3 @@ cargo install --locked \
     cargo-audit \
     sccache \
     wasm-tools
-
-curl -fsSL https://wasmtime.dev/install.sh | bash
-install -m 0755 "$HOME/.wasmtime/bin/wasmtime" /usr/local/bin/wasmtime
-rm -rf "$HOME/.wasmtime"

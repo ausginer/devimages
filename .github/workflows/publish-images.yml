@@ -2,7 +2,6 @@ name: Publish Devcontainer Images
 
 on:
   workflow_dispatch:
-  pull_request:
   push:
     branches:
       - main
@@ -18,7 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       has_changes: ${{ steps.detect.outputs.has_changes }}
-      matrix: ${{ steps.detect.outputs.matrix }}
+      has_independent_changes: ${{ steps.detect.outputs.has_independent_changes }}
+      independent_matrix: ${{ steps.detect.outputs.independent_matrix }}
+      build_rust: ${{ steps.detect.outputs.build_rust }}
+      build_rust_bevy: ${{ steps.detect.outputs.build_rust_bevy }}
 
     steps:
       - name: Checkout repository
@@ -30,17 +32,15 @@ jobs:
         id: detect
         env:
           EVENT_BEFORE: ${{ github.event.before }}
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: ./shared/scripts/detect-changed-images.sh
 
-  build-and-publish:
+  build-independent-images:
     needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true'
+    if: needs.detect-changes.outputs.has_independent_changes == 'true'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.detect-changes.outputs.independent_matrix) }}
 
     steps:
       - name: Checkout repository
@@ -86,6 +86,96 @@ jobs:
         if: steps.meta.outputs.publish == 'true' && steps.meta.outputs.alias_tags != ''
         env:
           IMAGE_NAME: ${{ matrix.image_name }}
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+          ALIAS_TAGS: ${{ steps.meta.outputs.alias_tags }}
+        run: ./shared/scripts/push-release-aliases.sh
+
+  build-rust-family:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.build_rust == 'true' || needs.detect-changes.outputs.build_rust_bevy == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install Dev Container CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Resolve image tags
+        id: meta
+        run: ./shared/scripts/resolve-image-tags.sh
+
+      - name: Log in to GHCR
+        if: steps.meta.outputs.publish == 'true'
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Select Rust base tag
+        env:
+          BUILD_RUST: ${{ needs.detect-changes.outputs.build_rust }}
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+        run: |
+          if [[ "${BUILD_RUST}" == "true" ]]; then
+            echo "RUST_IMAGE_TAG=${PRIMARY_TAG}" >> "${GITHUB_ENV}"
+          else
+            echo "RUST_IMAGE_TAG=latest" >> "${GITHUB_ENV}"
+          fi
+
+      - name: Build Rust image
+        if: needs.detect-changes.outputs.build_rust == 'true'
+        env:
+          IMAGE_NAME: ghcr.io/ausginer/devimages/rust
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+          PUBLISH: ${{ steps.meta.outputs.publish }}
+          CONFIG_PATH: .devcontainer/devcontainer.json
+          WORKSPACE_FOLDER: images/rust
+        run: ./shared/scripts/build-prebuilt-image.sh
+
+      - name: Ensure published Rust image is available locally
+        if: needs.detect-changes.outputs.build_rust == 'true' && steps.meta.outputs.publish == 'true'
+        env:
+          IMAGE_NAME: ghcr.io/ausginer/devimages/rust
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+        run: docker pull "${IMAGE_NAME}:${PRIMARY_TAG}"
+
+      - name: Push Rust release aliases
+        if: needs.detect-changes.outputs.build_rust == 'true' && steps.meta.outputs.publish == 'true' && steps.meta.outputs.alias_tags != ''
+        env:
+          IMAGE_NAME: ghcr.io/ausginer/devimages/rust
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+          ALIAS_TAGS: ${{ steps.meta.outputs.alias_tags }}
+        run: ./shared/scripts/push-release-aliases.sh
+
+      - name: Build Rust Bevy image
+        if: needs.detect-changes.outputs.build_rust_bevy == 'true'
+        env:
+          IMAGE_NAME: ghcr.io/ausginer/devimages/rust-bevy
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+          PUBLISH: ${{ steps.meta.outputs.publish }}
+          CONFIG_PATH: .devcontainer/devcontainer.json
+          WORKSPACE_FOLDER: images/rust-bevy
+        run: ./shared/scripts/build-prebuilt-image.sh
+
+      - name: Ensure published Rust Bevy image is available locally
+        if: needs.detect-changes.outputs.build_rust_bevy == 'true' && steps.meta.outputs.publish == 'true'
+        env:
+          IMAGE_NAME: ghcr.io/ausginer/devimages/rust-bevy
+          PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
+        run: docker pull "${IMAGE_NAME}:${PRIMARY_TAG}"
+
+      - name: Push Rust Bevy release aliases
+        if: needs.detect-changes.outputs.build_rust_bevy == 'true' && steps.meta.outputs.publish == 'true' && steps.meta.outputs.alias_tags != ''
+        env:
+          IMAGE_NAME: ghcr.io/ausginer/devimages/rust-bevy
           PRIMARY_TAG: ${{ steps.meta.outputs.primary_tag }}
           ALIAS_TAGS: ${{ steps.meta.outputs.alias_tags }}
         run: ./shared/scripts/push-release-aliases.sh

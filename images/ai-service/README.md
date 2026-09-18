@@ -1,23 +1,14 @@
 # ai-service
 
-This directory contains the `ai-service` image.
-
-It is now maintained from this repository and keeps the same public package identity:
+The full service-oriented devcontainer image, published as:
 
 ```text
 ghcr.io/ausginer/devimages/ai-service
 ```
 
-Recommended tags remain:
+Use `latest`, a full release tag such as `v1.2.3`, or its `v1.2` and `v1` aliases.
 
-- `latest`
-- `vX.Y.Z`
-- `vX.Y`
-- `vX`
-
-## Using The Image
-
-Use the image from a consumer repository's `devcontainer.json`:
+## Usage
 
 ```json
 {
@@ -26,34 +17,23 @@ Use the image from a consumer repository's `devcontainer.json`:
 }
 ```
 
-## What Gets Baked Into The Image
+## Included Tooling
 
-The prebuilt image starts from `node:25-bookworm-slim` and is assembled through a source `devcontainer.json` plus image-local and upstream features.
+The image starts from `node:slim` and adds:
 
-Included tooling:
+- common command-line utilities and the GitHub CLI
+- Rust and Cargo
+- uv and a uv-managed Python installation
+- PostgreSQL client tools
+- Chrome for Testing; `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` avoids a second browser cache
+- an SSH server, lazygit, and Helix
+- `sqlx-cli`, `sqruff`, and `cargo-expand`
+- Claude Code, Codex, OpenCode, Dura, and Just
 
-- Node.js 25
-- Rust toolchain
-- Python 3.14
-- `uv`
-- PostgreSQL client
-- Cargo tooling: `sqlx-cli`, `sqruff`, `cargo-expand`
-- GitHub CLI via `ghcr.io/devcontainers/features/github-cli:1`
-- Chrome for Testing via `ghcr.io/kreemer/features/chrometesting:1`
-- Claude Code CLI via `shared/features/claude-cli`
-- Codex CLI via `shared/features/codex-cli`
-- Dura via `shared/features/dura`
-- Just via `shared/features/just`
+The container runs as the upstream `node` user with `updateRemoteUserUID` enabled. `CARGO_HOME`, Cargo's binary directory, and the uv cache are configured for that user's home directory.
 
-The image includes Chrome for Testing, but does not bake in Playwright's own browser download cache.
+## Source
 
-It also includes GitHub CLI so `gh` and cloud/plugin-driven workflows have a consistent runtime available inside the devcontainer.
-
-The devcontainer user is `node`, matching the existing non-root user from the upstream `node` image, and the config enables `updateRemoteUserUID`. This keeps Linux bind-mounted workspaces writable without introducing a second `vscode` user that would conflict with UID `1000`.
-
-## Layout
-
-- `.devcontainer/devcontainer.json` contains the source config for the prebuilt image
-- `.devcontainer/features/cargo-tools/` contains the image-local Cargo tooling feature
-
-This repository-level workflow setup does not yet include sample consumer files or smoke tests for `ai-service`.
+- `.devcontainer/devcontainer.json` defines the image
+- `.devcontainer/features/cargo-tools/` installs the image-specific Cargo tools
+- `shared/features/` supplies the shared local features

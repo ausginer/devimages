@@ -6,7 +6,8 @@ This repository is the source of truth for reusable prebuilt devcontainer images
 
 - `ai-service`: the full service-oriented image, published as `ghcr.io/ausginer/devimages/ai-service`
 - `node`: a lighter Node.js-focused image, published as `ghcr.io/ausginer/devimages/node`
-- `rust-bevy`: a Rust and Bevy-focused image with Cargo, WASM, and native build tooling, published as `ghcr.io/ausginer/devimages/rust-bevy`
+- `rust`: a Rust-focused image with Cargo, WASM, and common development tooling, published as `ghcr.io/ausginer/devimages/rust`
+- `rust-bevy`: the `rust` image plus Bevy's Linux native dependencies, published as `ghcr.io/ausginer/devimages/rust-bevy`
 
 ## Using The Images
 
@@ -28,6 +29,13 @@ Use an image directly from a consumer repository's `devcontainer.json`:
 
 ```json
 {
+  "name": "my-rust-project",
+  "image": "ghcr.io/ausginer/devimages/rust:latest"
+}
+```
+
+```json
+{
   "name": "my-rust-bevy-project",
   "image": "ghcr.io/ausginer/devimages/rust-bevy:latest"
 }
@@ -43,9 +51,11 @@ Use an image directly from a consumer repository's `devcontainer.json`:
 
 ## Current Status
 
-`ai-service`, `node`, and `rust-bevy` are now real images in this repository.
+`ai-service`, `node`, `rust`, and `rust-bevy` are built from this repository.
 
 GitHub Actions selectively build and publish only affected images. Docs-only changes do not trigger image builds.
+
+Because `rust-bevy` is layered on `rust`, CI builds the two images in dependency order on the same runner. A Rust change also rebuilds `rust-bevy` against the matching Rust tag. A Bevy-only change uses the published `rust:latest` base.
 
 This repository still does not add:
 

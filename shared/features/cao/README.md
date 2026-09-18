@@ -1,5 +1,25 @@
 # CAO - CLI Agent Orchestrator
 
+Installs the CLI Agent Orchestrator, its Python package, and tmux 3.3 or newer. The optional entrypoint can start `cao-server` when the container starts.
+
+## Usage
+
+```json
+"./features/cao": {
+  "version": "latest",
+  "webui": false,
+  "port": "9889",
+  "autostart": false
+}
+```
+
+- `version` selects a Git tag, branch, commit, or the latest default branch
+- `webui` builds the web frontend and requires npm
+- `port` sets the default server port
+- `autostart` starts `cao-server` from the feature entrypoint
+
+The feature installs Python through its declared dependency. It supports apt- and apk-based images for system dependencies.
+
 This directory is a temporary, vendored copy of the CLI Agent Orchestrator
 devcontainer feature from the awslabs `cli-agent-orchestrator` repository:
 

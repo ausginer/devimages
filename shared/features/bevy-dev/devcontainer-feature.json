@@ -1,0 +1,6 @@
+{
+  "id": "bevy-dev",
+  "version": "1.0.0",
+  "name": "Bevy Development Dependencies",
+  "description": "Installs the Linux native libraries needed to build Bevy applications."
+}

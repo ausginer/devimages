@@ -6,20 +6,23 @@ if [[ -z "${GITHUB_OUTPUT:-}" ]]; then
   exit 1
 fi
 
-image_slugs=(ai-service node rust-bevy)
+image_slugs=(ai-service node rust rust-bevy)
 declare -A image_names=(
   [ai-service]="ghcr.io/ausginer/devimages/ai-service"
   [node]="ghcr.io/ausginer/devimages/node"
+  [rust]="ghcr.io/ausginer/devimages/rust"
   [rust-bevy]="ghcr.io/ausginer/devimages/rust-bevy"
 )
 declare -A config_paths=(
   [ai-service]=".devcontainer/devcontainer.json"
   [node]=".devcontainer/devcontainer.json"
+  [rust]=".devcontainer/devcontainer.json"
   [rust-bevy]=".devcontainer/devcontainer.json"
 )
 declare -A workspace_folders=(
   [ai-service]="images/ai-service"
   [node]="images/node"
+  [rust]="images/rust"
   [rust-bevy]="images/rust-bevy"
 )
 declare -A selected=()
@@ -64,6 +67,7 @@ if [[ "${collect_all}" == "true" ]]; then
 else
   for file in "${changed_files[@]}"; do
     [[ -z "${file}" ]] && continue
+    [[ "${file##*/}" == "README.md" ]] && continue
 
     if [[ "${file}" == images/ai-service/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
       selected["ai-service"]=1
@@ -73,11 +77,21 @@ else
       selected["node"]=1
     fi
 
+    if [[ "${file}" == images/rust/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
+      selected["rust"]=1
+    fi
+
     if [[ "${file}" == images/rust-bevy/.devcontainer/* || "${file}" == shared/scripts/* || "${file}" == shared/features/* ]]; then
       selected["rust-bevy"]=1
     fi
 
   done
+fi
+
+# rust-bevy is layered on rust, so every rebuilt rust image must also produce a
+# matching rust-bevy image while both tags are available in the same CI job.
+if [[ -n "${selected[rust]:-}" ]]; then
+  selected["rust-bevy"]=1
 fi
 
 selected_slugs=()
@@ -90,21 +104,32 @@ done
 if ((${#selected_slugs[@]} == 0)); then
   {
     echo 'has_changes=false'
-    echo 'matrix={"include":[]}'
+    echo 'has_independent_changes=false'
+    echo 'independent_matrix={"include":[]}'
+    echo 'build_rust=false'
+    echo 'build_rust_bevy=false'
   } >> "${GITHUB_OUTPUT}"
   exit 0
 fi
 
 printf 'Selected images: %s\n' "${selected_slugs[*]}"
 if ((${#changed_files[@]} > 0)); then
-  printf 'Changed files:\n%s\n' "${changed_files[@]}"
+  echo "Changed files:"
+  printf '%s\n' "${changed_files[@]}"
 else
   echo "Changed files: <full publish scope>"
 fi
 
+independent_slugs=()
+for slug in ai-service node; do
+  if [[ -n "${selected[${slug}]:-}" ]]; then
+    independent_slugs+=("${slug}")
+  fi
+done
+
 matrix_json='{"include":['
-for i in "${!selected_slugs[@]}"; do
-  slug="${selected_slugs[$i]}"
+for i in "${!independent_slugs[@]}"; do
+  slug="${independent_slugs[$i]}"
   if ((i > 0)); then
     matrix_json+=","
   fi
@@ -114,5 +139,12 @@ matrix_json+="]}"
 
 {
   echo "has_changes=true"
-  echo "matrix=${matrix_json}"
+  if ((${#independent_slugs[@]} > 0)); then
+    echo "has_independent_changes=true"
+  else
+    echo "has_independent_changes=false"
+  fi
+  echo "independent_matrix=${matrix_json}"
+  echo "build_rust=$([[ -n "${selected[rust]:-}" ]] && echo true || echo false)"
+  echo "build_rust_bevy=$([[ -n "${selected[rust-bevy]:-}" ]] && echo true || echo false)"
 } >> "${GITHUB_OUTPUT}"

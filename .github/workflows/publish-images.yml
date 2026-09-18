@@ -2,7 +2,6 @@ name: Publish Devcontainer Images
 
 on:
   workflow_dispatch:
-  pull_request:
   push:
     branches:
       - main
@@ -33,8 +32,6 @@ jobs:
         id: detect
         env:
           EVENT_BEFORE: ${{ github.event.before }}
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: ./shared/scripts/detect-changed-images.sh
 
   build-independent-images:

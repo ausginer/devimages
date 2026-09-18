@@ -31,13 +31,6 @@ collect_all="false"
 
 if [[ "${GITHUB_EVENT_NAME:-}" == "workflow_dispatch" ]]; then
   collect_all="true"
-elif [[ "${GITHUB_EVENT_NAME:-}" == "pull_request" ]]; then
-  if [[ -z "${PR_BASE_SHA:-}" || -z "${PR_HEAD_SHA:-}" ]]; then
-    echo "PR_BASE_SHA and PR_HEAD_SHA are required for pull_request events." >&2
-    exit 1
-  fi
-
-  mapfile -t changed_files < <(git diff --name-only "${PR_BASE_SHA}" "${PR_HEAD_SHA}")
 elif [[ "${GITHUB_REF_TYPE:-}" == "branch" && "${GITHUB_REF_NAME:-}" == "main" ]]; then
   if [[ -z "${EVENT_BEFORE:-}" || "${EVENT_BEFORE}" == "0000000000000000000000000000000000000000" ]]; then
     collect_all="true"

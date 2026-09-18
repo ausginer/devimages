@@ -53,7 +53,7 @@ Use an image directly from a consumer repository's `devcontainer.json`:
 
 `ai-service`, `node`, `rust`, and `rust-bevy` are built from this repository.
 
-GitHub Actions selectively build and publish only affected images. Docs-only changes do not trigger image builds.
+GitHub Actions selectively build and publish only affected images after changes reach `main`, when a release tag is pushed, or when the publish workflow is dispatched manually. Pull requests never run the publishing workflow, and docs-only changes do not trigger image builds.
 
 Because `rust-bevy` is layered on `rust`, CI builds the two images in dependency order on the same runner. A Rust change also rebuilds `rust-bevy` against the matching Rust tag. A Bevy-only change uses the published `rust:latest` base.
 

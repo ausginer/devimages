@@ -35,5 +35,6 @@
     "./features/uv-python": {},
     "./features/dura": {},
     "./features/just": {},
+    "./features/utils": {},
   },
 }

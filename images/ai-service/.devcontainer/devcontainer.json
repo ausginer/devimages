@@ -42,5 +42,6 @@
     "./features/opencode-cli": {},
     "./features/dura": {},
     "./features/just": {},
+    "./features/utils": {},
   },
 }

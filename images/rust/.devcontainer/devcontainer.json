@@ -39,5 +39,6 @@
     },
     "./features/dura": {},
     "./features/just": {},
+    "./features/utils": {},
   },
 }

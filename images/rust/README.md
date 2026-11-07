@@ -28,6 +28,7 @@ The image starts from `rust:slim` and adds:
 - Node.js, uv, and a uv-managed Python installation
 - common command-line utilities, GitHub CLI, an SSH server, lazygit, and Helix
 - Claude Code, Codex, OpenCode, Dura, and Just
+- ripgrep (`rg`) and xterm's `resize`
 
 The container runs as the non-root `dev` user created by `common-utils`, with `updateRemoteUserUID` enabled.
 

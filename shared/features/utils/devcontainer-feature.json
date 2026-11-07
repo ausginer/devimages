@@ -1,0 +1,6 @@
+{
+  "id": "utils",
+  "version": "1.0.0",
+  "name": "Utils",
+  "description": "Installs common terminal utilities: ripgrep (rg) and xterm's resize."
+}

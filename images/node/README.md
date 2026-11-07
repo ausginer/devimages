@@ -27,6 +27,7 @@ The image starts from `node:slim` and adds:
 - Chrome for Testing; `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` avoids a second browser cache
 - an SSH server, lazygit, and Helix
 - Claude Code, Codex, OpenCode, Dura, and Just
+- ripgrep (`rg`) and xterm's `resize`
 
 The container runs as the upstream `node` user with `updateRemoteUserUID` enabled.
 

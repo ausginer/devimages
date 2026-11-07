@@ -29,6 +29,7 @@ The image starts from `node:slim` and adds:
 - an SSH server, lazygit, and Helix
 - `sqlx-cli`, `sqruff`, and `cargo-expand`
 - Claude Code, Codex, OpenCode, Dura, and Just
+- ripgrep (`rg`) and xterm's `resize`
 
 The container runs as the upstream `node` user with `updateRemoteUserUID` enabled. `CARGO_HOME`, Cargo's binary directory, and the uv cache are configured for that user's home directory.
 

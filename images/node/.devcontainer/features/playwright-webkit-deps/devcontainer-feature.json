@@ -1,0 +1,14 @@
+{
+  "id": "playwright-webkit-deps",
+  "version": "1.0.0",
+  "name": "Playwright WebKit System Dependencies",
+  "description": "Installs the Debian libraries that a given Playwright version's WebKit build needs, without the browser build itself.",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "1.65.0",
+      "description": "Exact Playwright version whose WebKit dependency set to install."
+    }
+  },
+  "installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
+}

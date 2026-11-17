@@ -24,14 +24,16 @@ The image starts from `node:slim` and adds:
 - common command-line utilities and the GitHub CLI
 - Rust and Cargo, used by Cargo-installed utilities
 - uv and a uv-managed Python installation
-- Chrome for Testing; `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` avoids a second browser cache
 - an SSH server, lazygit, and Helix
 - Claude Code, Codex, OpenCode, Dura, and Just
 - ripgrep (`rg`) and xterm's `resize`
+- aube 2.10.0, pinned exactly to match consumers' `packageManager` field
+- the system libraries for Playwright 1.65.0's WebKit; the WebKit browser build itself is left to consumers
 
 The container runs as the upstream `node` user with `updateRemoteUserUID` enabled.
 
 ## Source
 
 - `.devcontainer/devcontainer.json` defines the image
+- `.devcontainer/features/` holds the image-local `aube` and `playwright-webkit-deps` features
 - `shared/features/` supplies the shared local features

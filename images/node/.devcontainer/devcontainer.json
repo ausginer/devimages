@@ -36,5 +36,11 @@
     "./features/dura": {},
     "./features/just": {},
     "./features/utils": {},
+    "./features/aube": {
+      "version": "2.10.0",
+    },
+    "./features/playwright-webkit-deps": {
+      "version": "1.65.0",
+    },
   },
 }

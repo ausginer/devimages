@@ -1,0 +1,13 @@
+{
+  "id": "aube",
+  "version": "1.0.0",
+  "name": "aube",
+  "description": "Installs an exact version of the aube package manager globally with npm.",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "2.10.0",
+      "description": "Exact aube version to install. Never use a dist-tag such as latest."
+    }
+  }
+}

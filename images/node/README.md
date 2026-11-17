@@ -24,7 +24,6 @@ The image starts from `node:slim` and adds:
 - common command-line utilities and the GitHub CLI
 - Rust and Cargo, used by Cargo-installed utilities
 - uv and a uv-managed Python installation
-- Chrome for Testing; `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` avoids a second browser cache
 - an SSH server, lazygit, and Helix
 - Claude Code, Codex, OpenCode, Dura, and Just
 - ripgrep (`rg`) and xterm's `resize`
